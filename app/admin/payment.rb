@@ -12,4 +12,6 @@ ActiveAdmin.register Payment do
 #   permitted
 # end
 
+permit_params :payment_type, :order_id, :address_id
+
 end
