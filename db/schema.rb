@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326174110) do
+ActiveRecord::Schema.define(version: 20170326213059) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -76,6 +76,10 @@ ActiveRecord::Schema.define(version: 20170326174110) do
     t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -83,14 +87,22 @@ ActiveRecord::Schema.define(version: 20170326174110) do
     t.decimal  "pst"
     t.decimal  "gst"
     t.decimal  "hst"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "address_id"
+    t.integer  "customer_id"
+    t.integer  "payment_id"
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["payment_id"], name: "index_orders_on_payment_id"
   end
 
   create_table "payments", force: :cascade do |t|
     t.string   "payment_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "address_id"
+    t.index ["address_id"], name: "index_payments_on_address_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -102,6 +114,8 @@ ActiveRecord::Schema.define(version: 20170326174110) do
     t.integer  "qty"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "provinces", force: :cascade do |t|
