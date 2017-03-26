@@ -1,4 +1,4 @@
 class Payment < ApplicationRecord
-  belongs_to :address
+  has_one :address
   belongs_to :order
 end
