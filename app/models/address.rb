@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
-  has_many :customers
-  has_many :orders
-  has_many :payments
-  belongs_to :province
+  # has_many :customers
+  # has_many :orders
+  # has_many :payments
+  has_one :province
 end
