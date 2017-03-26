@@ -12,6 +12,6 @@ ActiveAdmin.register OrderItem do
 #   permitted
 # end
 
-permit_params :order_id, :product_id, :price, :qty, :size
+permit_params :price, :qty, :size, :order_id, :product_id
 
 end

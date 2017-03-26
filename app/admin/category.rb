@@ -12,6 +12,6 @@ ActiveAdmin.register Category do
 #   permitted
 # end
 
-permit_params :description, :product_id
+permit_params :description
 
 end
