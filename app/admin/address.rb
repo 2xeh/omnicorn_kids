@@ -12,6 +12,6 @@ ActiveAdmin.register Address do
 #   permitted
 # end
 
-permit_params :province_id, :name, :pst, :gst, :hst
+permit_params :street_address, :city, :postal_code, :province_id
 
 end

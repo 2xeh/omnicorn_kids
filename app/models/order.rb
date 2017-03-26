@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-  has_one :address
-  has_one :customer
+  belongs_to :address
+  belongs_to :customer
 
   # note: it is worth considering that a user might use multiple payments for an order. Like a gift certificate or two credit cards
   has_many :payments

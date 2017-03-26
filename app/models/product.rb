@@ -3,5 +3,5 @@ class Product < ApplicationRecord
 
   # note: for now, one product has one category.
   # however I'm considering having categories belong to other categories
-  has_one :category
+  belongs_to :category
 end
