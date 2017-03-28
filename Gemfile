@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'devise'
+
+# For rubocop
+gem 'rubocop', '~> 0.48.0', require: false
