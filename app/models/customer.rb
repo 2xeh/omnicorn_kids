@@ -12,4 +12,9 @@ class Customer < ApplicationRecord
   validates :phone_number, length: { minimum: 7 }
   email_pattern = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, format: { with: email_pattern }
+
+  # getter method for active admin support
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

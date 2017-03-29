@@ -14,4 +14,10 @@ class Order < ApplicationRecord
   # consideration: total price would be calculated based on order items
   # the amount on the payment would be recorded on the payments table
   validates :pst, :gst, :hst, numericality: true
+
+  # getter method for active admin support
+  def name
+    customer_name = (Customer.find_by id: customer_id).name
+    "#{customer_name}, #{updated_at}"
+  end
 end
