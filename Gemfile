@@ -7,6 +7,8 @@ end
 
 #  Required for Active Admin
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+# Bootstrap gem wrapper 
+gem 'bootstrap', '~> 4.0.0.alpha6'
 # For image uploading
 gem 'carrierwave', '~> 1.0'
 # Use CoffeeScript for .coffee assets and views
