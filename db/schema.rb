@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328042522) do
+ActiveRecord::Schema.define(version: 20170329184058) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -84,18 +84,26 @@ ActiveRecord::Schema.define(version: 20170328042522) do
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
+  create_table "order_statuses", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string   "status"
     t.decimal  "pst"
     t.decimal  "gst"
     t.decimal  "hst"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "address_id"
     t.integer  "customer_id"
     t.integer  "payment_id"
+    t.integer  "order_status_id"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
   end
 
@@ -105,6 +113,7 @@ ActiveRecord::Schema.define(version: 20170328042522) do
     t.datetime "updated_at",   null: false
     t.integer  "address_id"
     t.integer  "order_id"
+    t.decimal  "amount"
     t.index ["address_id"], name: "index_payments_on_address_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
@@ -130,6 +139,7 @@ ActiveRecord::Schema.define(version: 20170328042522) do
     t.decimal  "hst"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "code"
   end
 
 end
