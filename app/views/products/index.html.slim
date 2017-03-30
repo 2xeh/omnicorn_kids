@@ -1,0 +1,5 @@
+/# Home page. For now let's display all products
+= render partial: 'category', collection: @categories
+= render partial: 'product', collection: @products, locals: {full_details: false}
+/ h2
+/   = 'index for products'

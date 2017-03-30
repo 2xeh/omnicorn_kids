@@ -1,0 +1,17 @@
+.product
+
+  /# always show this
+  - if product.image.present?
+    = image_tag product.image
+  h2 = product.name
+  p
+    = number_to_currency product.price
+  
+  /# if full details, render more
+  - if full_details
+    p = product.description
+    p = product.details
+      
+  /# not full details, show a link
+  - else
+    p = link_to 'view', product

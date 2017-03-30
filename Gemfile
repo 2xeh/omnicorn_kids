@@ -7,7 +7,7 @@ end
 
 #  Required for Active Admin
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
-# Bootstrap gem wrapper 
+# Bootstrap gem wrapper
 gem 'bootstrap', '~> 4.0.0.alpha6'
 # For image uploading
 gem 'carrierwave', '~> 1.0'
@@ -29,6 +29,8 @@ gem 'rails', '~> 5.0.2'
 gem 'rubocop', '~> 0.48.0', require: false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Gem to use Slim instead of ERB in our views. http://slim-lang.com/
+gem 'slim-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

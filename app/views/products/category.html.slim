@@ -1,0 +1,5 @@
+h3 
+  = 'Category: '
+  = @category.description
+
+= render partial: 'product', collection: @category_products, locals: { full_details: false }
