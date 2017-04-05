@@ -10,5 +10,26 @@ html
     /# ^ from the starter template, not sure if this is useful. see March 27 notes
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    
+    /# copied from richonrails (slim-ified)
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    - if request.ssl?
+      = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+      = javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+    - else
+      = stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+      = javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    /# end of copy from richonrails
+    
   body
+    /# copied from richonrails
+    .container
+      .row
+        .col-xs-6
+          h1 = link_to "My Store", root_path
+        .col-xs-6.text-right
+          h1.cart-text = render 'layouts/cart_text'
+      hr
+      /# end of copy from richonrails
     = yield

@@ -1,0 +1,26 @@
+.well
+  .row
+    .col-xs-8
+      - if product.image.present?
+        = image_tag product.image
+      
+      h4 = product.name
+      
+      - if full_details == true
+        p = product.description
+        p = product.details
+          
+      /# not full details, show a link
+      - else
+        p = link_to 'view', product
+        
+    .col-xs-4
+      = form_for order_item, remote: true do |f|
+        h4.text-right
+          | Unit Price:
+          span style=("color: green") = number_to_currency product.price
+        .input-group
+          = f.number_field :quantity, value: 1, class: "form-control", min: 1
+          .input-group-btn
+            = f.hidden_field :product_id, value: product.id
+            = f.submit "Add to Cart", class: "btn btn-primary"
