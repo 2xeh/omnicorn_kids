@@ -1,6 +1,14 @@
-@import "bootstrap";
+@import 'bootstrap';
 // @import "modelName"; // the other css files
+//@import '_variables';
+//@import '_bootswatch';
 
 body {
   padding: 2em;
+
+
+}
+img {
+  max-width: 50em;
+  max-height: 50em;
 }

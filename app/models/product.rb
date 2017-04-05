@@ -4,6 +4,8 @@ class Product < ApplicationRecord
   # note: for now, one product has one category.
   # however I'm considering having categories belong to other categories
   belongs_to :category
+  has_many :order_items
+  default_scope { where(active: true) }
 
   # for image uploading via carrierwave
   mount_uploader :image, ImageUploader

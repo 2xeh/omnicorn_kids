@@ -3,6 +3,10 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :order_status
 
+  # a couple of callbacks
+  before_create :set_order_status
+  before_save :update_subtotal
+
   # note: it is worth considering that a user might use
   # multiple payments for an order. Like a gift certificate or two credit cards
   has_many :payments
@@ -19,5 +23,19 @@ class Order < ApplicationRecord
   def name
     customer_name = (Customer.find_by id: customer_id).name
     "#{customer_name}, #{updated_at}"
+  end
+
+  def subtotal
+    order_items.collect { |oi| oi.valid? ? (oi.qty * oi.price) : 0 }.sum
+  end
+
+  private
+
+  def set_order_status
+    self.order_status_id = 1
+  end
+
+  def update_subtotal
+    self[:subtotal] = subtotal
   end
 end
