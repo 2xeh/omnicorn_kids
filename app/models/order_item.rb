@@ -2,12 +2,14 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
 
-  validates :price, :qty, :order_id, :product_id, presence: true
-  validates :price, :qty, numericality: true
+  # validates :qty, presence: true
+  # validates :qty, numericality: true
 
   # some callback validations
-  validate :product_present
-  validate :order_present
+  # validate :product_present
+  # validate :order_present
+
+  # AA NOTE: I don't know why this is a problem.... for seeding
   before_save :finalize
 
   # { message: "%{value} seems wrong" }
@@ -16,7 +18,8 @@ class OrderItem < ApplicationRecord
   def name
     # ideally I wanted to show the product name ...
     # maybe with some other qualification
-    Product.find_by id: :product_id
+    #Product.find_by id: :product_id
+    product.name
   end
 
   def price

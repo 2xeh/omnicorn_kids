@@ -1,4 +1,11 @@
 - if @order.errors.any? || @order_item.errors.any?
   | alert("not valid.")
+  / | errors_list = " "
+  / | - @order.errors.full_messages.each do |err|
+  /   | errors_list = errors_list + err
+  / | - @order_item.errors.full_messages.each do |err|
+  /   | errors_list = errors_list + err
+  / | alert(errors_list)
+
 - else
   | $(".cart-text").html("#{escape_javascript(render 'layouts/cart_text')}")

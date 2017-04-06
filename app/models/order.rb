@@ -13,11 +13,11 @@ class Order < ApplicationRecord
   has_many :order_items
 
   # validations
-  validates :status, :pst, :gst, :hst, :address_id,
-            :customer_id, :order_status_id, presence: true
+  # validates :status, :pst, :gst, :hst, :address_id,
+  #           :customer_id, :order_status_id, presence: true
   # consideration: total price would be calculated based on order items
   # the amount on the payment would be recorded on the payments table
-  validates :pst, :gst, :hst, numericality: true
+  # validates :pst, :gst, :hst, numericality: true
 
   # getter method for active admin support
   def name
@@ -29,6 +29,12 @@ class Order < ApplicationRecord
     order_items.collect { |oi| oi.valid? ? (oi.qty * oi.price) : 0 }.sum
   end
 
+  def status
+    # o = OrderStatus.find_by(id: order_status_id)
+    # o.description
+    order_status_id
+  end
+
   private
 
   def set_order_status
@@ -38,4 +44,5 @@ class Order < ApplicationRecord
   def update_subtotal
     self[:subtotal] = subtotal
   end
+
 end
