@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170405182329) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
@@ -21,9 +24,9 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.integer  "author_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "addresses", force: :cascade do |t|
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "province_id"
-    t.index ["province_id"], name: "index_addresses_on_province_id"
+    t.index ["province_id"], name: "index_addresses_on_province_id", using: :btree
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -49,8 +52,8 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -69,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "address_id"
-    t.index ["address_id"], name: "index_customers_on_address_id"
+    t.index ["address_id"], name: "index_customers_on_address_id", using: :btree
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -80,8 +83,8 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.datetime "updated_at", null: false
     t.integer  "order_id"
     t.integer  "product_id"
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
+    t.index ["product_id"], name: "index_order_items_on_product_id", using: :btree
   end
 
   create_table "order_statuses", force: :cascade do |t|
@@ -102,10 +105,10 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.integer  "order_status_id"
     t.decimal  "subtotal"
     t.decimal  "shipping"
-    t.index ["address_id"], name: "index_orders_on_address_id"
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
-    t.index ["order_status_id"], name: "index_orders_on_order_status_id"
-    t.index ["payment_id"], name: "index_orders_on_payment_id"
+    t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
+    t.index ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+    t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+    t.index ["payment_id"], name: "index_orders_on_payment_id", using: :btree
   end
 
   create_table "payments", force: :cascade do |t|
@@ -115,8 +118,8 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.integer  "address_id"
     t.integer  "order_id"
     t.decimal  "amount"
-    t.index ["address_id"], name: "index_payments_on_address_id"
-    t.index ["order_id"], name: "index_payments_on_order_id"
+    t.index ["address_id"], name: "index_payments_on_address_id", using: :btree
+    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -131,7 +134,7 @@ ActiveRecord::Schema.define(version: 20170405182329) do
     t.integer  "category_id"
     t.string   "image"
     t.boolean  "active"
-    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
   end
 
   create_table "provinces", force: :cascade do |t|
