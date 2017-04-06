@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  # almost exactly per RichOnRails - edited to match my models
   def create
     @order = current_order
     @order_item = @order.order_items.new(order_item_params)

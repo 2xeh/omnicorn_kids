@@ -13,4 +13,11 @@ class ProductsController < ApplicationController
   def item
     @product = Product.find(params[:id])
   end
+
+  def search_keyword
+    keyword = params[:keyword].downcase
+    @prod_result = Product\
+                   .where("lower(description) LIKE '%#{keyword}%'")
+                   .order(:description)
+  end
 end

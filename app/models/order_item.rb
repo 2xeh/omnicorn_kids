@@ -1,16 +1,17 @@
 class OrderItem < ApplicationRecord
-  belongs_to :order
-  belongs_to :product
+  belongs_to :order # RichOnRails
+  belongs_to :product # RichOnRails
 
-  # validates :qty, presence: true
+  # RichOnRails
+  validates :qty, presence: true,  numericality: { only_integer: true, greater_than: 0 }
   # validates :qty, numericality: true
   #
   # # some callback validations
-  # validate :product_present
-  # validate :order_present
-  #
-  # # AA NOTE: I don't know why this is a problem.... for seeding
-  # before_save :finalize
+  validate :product_present # RichOnRails
+  validate :order_present # RichOnRails
+
+  # AA NOTE: I don't know why this is a problem.... for seeding
+  before_save :finalize # RichOnRails
 
   # { message: "%{value} seems wrong" }
 
@@ -22,6 +23,7 @@ class OrderItem < ApplicationRecord
     product.name
   end
 
+  # RichOnRails
   def price
     if persisted?
       self[:price]
@@ -30,22 +32,27 @@ class OrderItem < ApplicationRecord
     end
   end
 
+  # RichOnRails
+  # AA NOTE: Not keeping a column for this bc it can be calculated
   def total_price
-    unit_price * quantity
+    price * qty
   end
 
   private
 
+  # RichOnRails
   def product_present
     return unless product.nil?
     errors.add(:product, 'is not valid or is not active.')
   end
 
+  # RichOnRails
   def order_present
     return unless order.nil?
     errors.add(:order, 'is not a valid order.')
   end
 
+  # RichOnRails
   def finalize
     self[:price] = price
     # note: choosing to skip this. we can probably calculate

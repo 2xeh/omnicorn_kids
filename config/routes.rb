@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/products/item/:id', to: 'products#item',
                             as: 'product'
 
+  get '/products/search_keyword/', to: 'products#search_keyword'
   # per richonrails.com
   resources :products, only: [:index]
   resource :cart, only: [:show]
