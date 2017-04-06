@@ -26,6 +26,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: omnicorn-kids_production
+  username: omnicorn-kids
+  password: <%= ENV['OMNICORN-KIDS_DATABASE_PASSWORD'] %>
