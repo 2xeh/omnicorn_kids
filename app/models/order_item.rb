@@ -4,13 +4,13 @@ class OrderItem < ApplicationRecord
 
   # validates :qty, presence: true
   # validates :qty, numericality: true
-
-  # some callback validations
+  #
+  # # some callback validations
   # validate :product_present
   # validate :order_present
-
-  # AA NOTE: I don't know why this is a problem.... for seeding
-  before_save :finalize
+  #
+  # # AA NOTE: I don't know why this is a problem.... for seeding
+  # before_save :finalize
 
   # { message: "%{value} seems wrong" }
 

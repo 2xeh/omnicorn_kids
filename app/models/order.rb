@@ -3,9 +3,9 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :order_status
 
-  # a couple of callbacks
-  before_create :set_order_status
-  before_save :update_subtotal
+  # # a couple of callbacks
+  # before_create :set_order_status
+  # before_save :update_subtotal
 
   # note: it is worth considering that a user might use
   # multiple payments for an order. Like a gift certificate or two credit cards
