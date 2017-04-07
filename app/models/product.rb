@@ -1,6 +1,4 @@
 class Product < ApplicationRecord
-  # has_many :order_items
-
   # note: for now, one product has one category.
   # however I'm considering having categories belong to other categories
   # belongs_to :category # AA - try adding this back in later
@@ -11,7 +9,7 @@ class Product < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   # validations - AA - try adding back in later
-  # validates :name, :description, :price, :qty, presence: true
+  validates :name, :description, :price, :qty, presence: true
 
   # consideration: details not necessary and size might not be relevant
   # image shouldn't necessarily be required either (ex. gift certificate)

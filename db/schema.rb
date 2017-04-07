@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(version: 20170406183817) do
     t.string   "description"
     t.string   "details"
     t.decimal  "price"
-    t.string   "size"
+    t.string   "product_size"
     t.integer  "qty"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "category_id"
     t.string   "image"
     t.boolean  "active"

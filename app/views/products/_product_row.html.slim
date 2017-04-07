@@ -1,9 +1,9 @@
 .well
   .row
-    .col-xs-8
-      - if product.image.present?
-        = image_tag product.image
+    - if product.image.present?
+      = image_tag product.image
       
+    .col-xs-8
       h4 = product.name
       
       - if full_details = true

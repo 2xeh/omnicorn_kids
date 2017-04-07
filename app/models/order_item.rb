@@ -3,8 +3,9 @@ class OrderItem < ApplicationRecord
   belongs_to :product # RichOnRails
 
   # RichOnRails
-  validates :qty, presence: true,  numericality: { only_integer: true, greater_than: 0 }
-  # validates :qty, numericality: true
+  validates :qty, presence: true, numericality:
+            { only_integer: true, greater_than: 0 }
+  validates :qty, numericality: true
   #
   # # some callback validations
   validate :product_present # RichOnRails
@@ -56,6 +57,6 @@ class OrderItem < ApplicationRecord
   def finalize
     self[:price] = price
     # note: choosing to skip this. we can probably calculate
-    # self[:total_price] = qty * self[:price]
+    self[:total_price] = qty * self[:price]
   end
 end
