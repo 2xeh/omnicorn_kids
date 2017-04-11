@@ -129,5 +129,5 @@ Order.create! id: 1, pst: 0.05, gst: 0.08, hst: 0, shipping: 8.00,
               subtotal: 21.99, address_id: 1, customer_id: 1,
               order_status_id: 2, payment_id: 1
 
-OrderItem.create! price: 14.99, qty: 1,
-                  order_id: 1, product_id: 111
+# OrderItem.create! price: 14.99, qty: 1,
+#                   order_id: 1, product_id: 111
