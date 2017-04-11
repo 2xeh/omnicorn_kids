@@ -1,5 +1,5 @@
 - if @order.errors.any? || @order_item.errors.any?
-  | console.log("#{@order_item.inspect}")
+  | console.log("#{@order.errors.full_messages.inspect}")
   / | errors_list = " "
   / | - @order.errors.full_messages.each do |err|
   /   | errors_list = errors_list + err

@@ -18,7 +18,7 @@ class Order < ApplicationRecord
   #           :customer_id, :order_status_id, presence: true
   # consideration: total price would be calculated based on order items
   # the amount on the payment would be recorded on the payments table
-  validates :pst, :gst, :hst, numericality: true
+  # validates :pst, :gst, :hst, numericality: true
 
   # getter method for active admin support
   def name

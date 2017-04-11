@@ -1,9 +1,13 @@
 class OrderItemsController < ApplicationController
   # almost exactly per RichOnRails - edited to match my models
   def create
+    # current_order.order_status_id = 1
     @order = current_order
+    # consider putting in a query here to retrieve order_item if it exists?
+    # look to application_controller for reference
     @order_item = @order.order_items.new(order_item_params)
     @order.save
+    # puts the current order id into session
     session[:order_id] = @order.id
   end
 

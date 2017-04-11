@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'charges/new'
+  get 'charges/create'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

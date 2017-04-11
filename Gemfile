@@ -36,6 +36,8 @@ gem 'rubocop', '~> 0.48.0', require: false
 gem 'sass-rails', '~> 5.0'
 # Gem to use Slim instead of ERB in our views. http://slim-lang.com/
 gem 'slim-rails'
+# stripe for payment processing
+gem 'stripe'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
