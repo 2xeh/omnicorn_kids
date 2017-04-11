@@ -5,13 +5,10 @@ class OrderItem < ApplicationRecord
   # RichOnRails
   validates :qty, presence: true, numericality:
             { only_integer: true, greater_than: 0 }
-  validates :qty, numericality: true
   #
   # # some callback validations
   validate :product_present # RichOnRails
   validate :order_present # RichOnRails
-
-  # AA NOTE: I don't know why this is a problem.... for seeding
   before_save :finalize # RichOnRails
 
   # { message: "%{value} seems wrong" }
@@ -20,7 +17,7 @@ class OrderItem < ApplicationRecord
   def name
     # ideally I wanted to show the product name ...
     # maybe with some other qualification
-    #Product.find_by id: :product_id
+    # Product.find_by id: :product_id
     product.name
   end
 
