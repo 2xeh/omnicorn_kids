@@ -10,11 +10,15 @@ class ApplicationController < ActionController::Base
       Order.find(session[:order_id])
     else
       order = Order.new
+      session[:order_id] = order
     end
+
   # rescue but consider that the order would not exist if we have to do this
   rescue ActiveRecord::RecordNotFound
     session[:order_id] = nil
-  #ensure
     order = Order.new
+    session[:order_id] = order
+    # note: ensure is like the finally in a try/catch
+    # ensure
   end
 end
