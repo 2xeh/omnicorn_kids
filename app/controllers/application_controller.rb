@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_order
+  helper_method :all_products
+  helper_method :all_categories
+
+  def all_products
+    Product.all
+  end
+
+  def all_categories
+    Category.all
+  end
 
   def current_order
     # if there is an order id set, and it exists

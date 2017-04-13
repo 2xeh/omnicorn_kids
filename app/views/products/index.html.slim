@@ -1,18 +1,18 @@
+.container
+  /# from richonrails tutorial
+  .row
+    .col-md-3
+      = render partial: 'category', collection: @categories
+    .col-md-6
+      h3.text-center Products for Sale
+      - @products.each do |product|
+        = render 'product_row', product: product, order_item: @order_item, locals: {full_details: false}
+      / = render partial: 'product_row', collection: @products, locals: {full_details: false}
+      
+      /#= render partial: 'product', collection: @products, locals: {full_details: false}
 
-= render partial: 'category', collection: @categories
+  / h2
+  /   = 'index for products'
 
-/# from richonrails tutorial
-h3.text-center Products for Sale
-.row
-  .col-xs-6.col-xs-offset-3
-    - @products.each do |product|
-      = render 'product_row', product: product, order_item: @order_item, locals: {full_details: false}
-    / = render partial: 'product_row', collection: @products, locals: {full_details: false}
+  /# Home page. For now let's display all products
     
-    /#= render partial: 'product', collection: @products, locals: {full_details: false}
-
-/ h2
-/   = 'index for products'
-
-/# Home page. For now let's display all products
-  

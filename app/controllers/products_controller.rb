@@ -6,8 +6,10 @@ class ProductsController < ApplicationController
   end
 
   def category
-    @category_products = Product.where(category_id: params[:catid])
+    @products = Product.where(category_id: params[:catid])
+    @categories = Category.all
     @category = Category.find(params[:catid])
+    @order_item = current_order.order_items.new
   end
 
   def item

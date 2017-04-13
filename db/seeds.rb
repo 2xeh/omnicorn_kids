@@ -76,10 +76,13 @@ Customer.create! first_name: 'Orpheus', last_name: 'Bunny',
                  email: 'dark.lord@example.com', password: 'password',
                  address_id: 1
 
+# note: in project,
 Product.create! id: 101, name: 'Rainbow Unicorn', description: 'Graphic Onesie',
                 details: '100% Organic Cotton Jersey', price: 21.99, qty: 100,
-                image: '/uploads/product/image/1/unicorn-rainbow-onesie.jpg',
+                image: Rails.root.join('public/uploads/product/image/1/unicorn-rainbow-onesie.jpg').open,
                 category_id: 1, active: true
+
+
 Product.create! id: 103, name: 'Bananacorn', description: 'Printed Tee',
                 details: '100% Organic Cotton Jersey', price: 23.99, qty: 100,
                 image: '/uploads/product/image/3/top_bananacorn.png',

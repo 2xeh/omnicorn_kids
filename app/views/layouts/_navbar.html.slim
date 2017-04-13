@@ -1,0 +1,33 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="#"  Omnicorn Kids
+    #navbar.navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li.active
+          a href="#"  Home
+        li
+          a href="#"  About
+        li
+          a href="#"  Contact
+        li.dropdown
+          a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+            | Categories
+            span.caret
+          ul.dropdown-menu
+             - all_categories.each do |category|
+              li
+                a = link_to "#{category.description}", category
+            
+      ul.nav.navbar-nav.navbar-right
+        li
+          /# a form for searching
+        li
+          a href="../navbar-fixed-top/"  Fixed top
+    /# /.nav-collapse
+  /# /.container-fluid
