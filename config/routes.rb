@@ -9,14 +9,19 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   # if you make a categories controller, this would be the :show
-  get '/products/category/:catid', to: 'products#category',
-                                   as: 'category'
+  get '/products/category/:catid',
+      to: 'products#category',
+      as: 'category'
+
+  get '/products/search_product/',
+      to: 'products#search_product'
 
   # ie. like :show
-  get '/products/item/:id', to: 'products#item',
-                            as: 'product'
+  get '/products/item/:id',
+      to: 'products#item',
+      as: 'product'
 
-  get '/products/search_keyword/', to: 'products#search_keyword'
+  # get '/products/search_keyword/', to: 'products#search_keyword'
   # per richonrails.com
   resources :products, only: [:index]
   resource :cart, only: [:show]

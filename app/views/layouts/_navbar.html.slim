@@ -26,8 +26,16 @@ nav.navbar.navbar-default
             
       ul.nav.navbar-nav.navbar-right
         li
-          /# a form for searching
-        li
-          a href="../navbar-fixed-top/"  Fixed top
+        .pull-right.product-query
+        form.form-inline.my-2.my-lg-0 action="/products/search_product/"
+          input.form-control.mr-sm-2 placeholder="Search Products" type="text" name="product_keyword" /
+          
+          select.form-control name="category_selected"
+            option.form-control value="ALL" All Categories
+            - all_categories.each do |c|
+              option.form-control value="#{c.id}" #{c.description}
+            
+          button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
+        
     /# /.nav-collapse
   /# /.container-fluid
