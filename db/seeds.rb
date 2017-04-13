@@ -76,50 +76,52 @@ Customer.create! first_name: 'Orpheus', last_name: 'Bunny',
                  email: 'dark.lord@example.com', password: 'password',
                  address_id: 1
 
+# note: in project,
 Product.create! id: 101, name: 'Rainbow Unicorn', description: 'Graphic Onesie',
                 details: '100% Organic Cotton Jersey', price: 21.99, qty: 100,
-                image: '/uploads/product/image/1/unicorn-rainbow-onesie.jpg',
+                image:  Rails.root.join('public/uploads/product/image/101/unicorn-rainbow-onesie.jpg').open,
                 category_id: 1, active: true
+
 Product.create! id: 103, name: 'Bananacorn', description: 'Printed Tee',
                 details: '100% Organic Cotton Jersey', price: 23.99, qty: 100,
-                image: '/uploads/product/image/3/top_bananacorn.png',
+                image: Rails.root.join('public/uploads/product/image/103/top_bananacorn.png').open,
                 category_id: 1, active: true
 Product.create! id: 104, name: 'Art Thou Stylin', description: 'Printed Tank',
                 details: '100% Organic Cotton Jersey', price: 22.99, qty: 100,
-                image: '/uploads/product/image/4/tee-action-jackson.jpg',
+                image: Rails.root.join('public/uploads/product/image/104/tee-action-jackson.jpg').open,
                 category_id: 1, active: true
 Product.create! id: 105, name: 'Peppermint Pantsies',
                 description: 'Printed Pants',
                 details: '100% Organic Cotton Jersey', price: 28.99, qty: 100,
-                image: '/uploads/product/image/5/bottoms-peppermint-pants.jpg',
+                image: Rails.root.join('public/uploads/product/image/105/bottoms-peppermint-pants.jpg').open,
                 category_id: 2, active: true
 Product.create! id: 106, name: 'Make a Splash', description: 'Printed Leggings',
                 details: '100% Organic Cotton Jersey', price: 32.99, qty: 100,
-                image: '/uploads/product/image/9/sleep-cherry-birds.jpg',
+                image: Rails.root.join('public/uploads/product/image/106/bottoms-make-a-splash.jpg').open,
                 category_id: 2, active: true
 Product.create! id: 107, name: 'Jungle Jumper', description: 'Printed Dress',
                 details: '100% Organic Cotton Jersey', price: 38.99, qty: 100,
-                image: '/uploads/product/image/7/dress-jungle.jpg',
+                image: Rails.root.join('public/uploads/product/image/107/dress-jungle.png').open,
                 category_id: 3, active: true
 Product.create! id: 108, name: 'Seeing Stripes', description: 'Fashion Dress',
                 details: '100% Organic Cotton Jersey', price: 39.99, qty: 100,
-                image: '/uploads/product/image/8/dress-seeing-stripes.jpg',
+                image: Rails.root.join('public/uploads/product/image/108/dress-seeing-stripes.jpg').open,
                 category_id: 3, active: true
 Product.create! id: 109, name: 'Cherry Birds', description: 'Printed Sleeper',
                 details: '100% Organic Cotton Jersey', price: 32.99, qty: 100,
-                image: '/uploads/product/image/9/sleep-cherry-birds.jpg',
+                image: Rails.root.join('public/uploads/product/image/109/sleep-cherry-birds.jpg').open,
                 category_id: 4, active: true
 Product.create! id: 110, name: 'Ruler of All', description: 'Printed Sleeper',
                 details: '100% Organic Cotton Jersey', price: 32.99, qty: 100,
-                image: '/uploads/product/image/10/sleep-ruler-of-all.jpg',
+                image: Rails.root.join('public/uploads/product/image/110/sleep-ruler-of-all.jpg').open,
                 category_id: 4, active: true
 Product.create! id: 111, name: 'Feathered Friend', description: 'Bandana Bib',
                 details: '100% Organic Cotton Jersey', price: 14.99, qty: 100,
-                image: '/uploads/product/image/11/acc-feathered-friend.jpg',
+                image: Rails.root.join('public/uploads/product/image/111/acc-feathered-friend.jpg').open,
                 category_id: 5, active: true
 Product.create! id: 112, name: 'Electric Dreams', description: 'Bandana Bib',
                 details: '100% Organic Cotton Jersey', price: 20.99, qty: 100,
-                image: '/uploads/product/image/12/acc-electric-dreams.jpg',
+                image: Rails.root.join('public/uploads/product/image/112/acc-electric-dreams.jpg').open,
                 category_id: 5, active: true
 
 Payment.create! payment_type: 'Mastercard', amount: 33.89,

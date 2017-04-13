@@ -20,7 +20,7 @@ class OrderItemsController < ApplicationController
   def update
     @order = current_order
     @order_item = @order.order_items.find(params[:id])
-    # @order_item.update_attributes(order_item_params)
+    @order_item.update_attributes(order_item_params)
     @order_items = @order.order_items
   end
 
@@ -55,12 +55,20 @@ class OrderItemsController < ApplicationController
 
     if session[:to_order_list].include?(id)
       puts 'ANDREA: product is in session. get the order_item'
-      @order.order_items.where(product_id: id)
+      # @order.order_items.where(product_id: id)
+      # AA the product is in session, I want to add the qty
+      oi = @order.order_items.where(product_id: id)
+      oi.qty += order_item_params[:qty].to_i
+      oi.save
+
     else
       puts 'ANDREA: product is NOT in session. create a new order_item'
-      @order.order_items.new(order_item_params)
+      oi = @order.order_items.new(order_item_params)
       session[:to_order_list] << id
+      oi.save
+
     end
+    return oi
     # flash[:notice] = "Added product to cart."
     # redirect_back(fallback_location: root_path)
   end

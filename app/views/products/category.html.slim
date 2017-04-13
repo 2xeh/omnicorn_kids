@@ -1,5 +1,13 @@
-h3 
-  = 'Category: '
-  = @category.description
+.container
+  /# from richonrails tutorial
+  .row
+    .col-md-3
+      = render partial: 'category', collection: @categories
+      
+    .col-md-6
+      h3.text-center 
+        = "Shop by Category: #{@category.description}"
+        / = @category.description
 
-= render partial: 'product', collection: @category_products, locals: { full_details: false }
+      - @products.each do |product|
+        = render 'product_row', product: product, order_item: @order_item, locals: {full_details: false}

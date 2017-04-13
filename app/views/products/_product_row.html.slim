@@ -1,9 +1,11 @@
 .well
-  .row
+  .row.products_summary
+    
     - if product.image.present?
+      .col-md-8.product_image
       = image_tag product.image
       
-    .col-xs-8
+    .col-md-8
       h4 = product.name
       
       - if full_details = true
@@ -14,11 +16,13 @@
       - else
         p = link_to 'view', product
         
-    .col-xs-4
+    .col-md-4.col-lg-3
+      h4.text-right
+        | Unit Price:
+        span style=('color: green') = number_to_currency product.price
+          
+    .col-md-12
       = form_for order_item, remote: true do |f|
-        h4.text-right
-          | Unit Price:
-          span style=('color: green') = number_to_currency product.price
         .input-group
           = f.number_field :qty, value: 1, class: 'form-control', min: 1
           .input-group-btn

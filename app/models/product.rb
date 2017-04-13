@@ -14,4 +14,5 @@ class Product < ApplicationRecord
   # consideration: details not necessary and size might not be relevant
   # image shouldn't necessarily be required either (ex. gift certificate)
   # note: not writing image validation as that is handled by imageUploader
+
 end
