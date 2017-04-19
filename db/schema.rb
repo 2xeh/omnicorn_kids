@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406183817) do
+ActiveRecord::Schema.define(version: 20170419191018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,9 +105,15 @@ ActiveRecord::Schema.define(version: 20170406183817) do
     t.integer  "order_status_id"
     t.decimal  "subtotal"
     t.decimal  "shipping"
+    t.integer  "orders_id"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "name_on_card"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["customer_id"], name: "index_orders_on_customer_id", using: :btree
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+    t.index ["orders_id"], name: "index_orders_on_orders_id", using: :btree
     t.index ["payment_id"], name: "index_orders_on_payment_id", using: :btree
   end
 
@@ -118,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170406183817) do
     t.integer  "address_id"
     t.integer  "order_id"
     t.decimal  "amount"
+    t.string   "email"
     t.index ["address_id"], name: "index_payments_on_address_id", using: :btree
     t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
   end
@@ -147,4 +154,5 @@ ActiveRecord::Schema.define(version: 20170406183817) do
     t.string   "code"
   end
 
+  add_foreign_key "orders", "orders", column: "orders_id"
 end
