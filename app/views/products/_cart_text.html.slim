@@ -1,0 +1,6 @@
+- items_in_cart = 0
+- session[:product_quantities].each { |q| items_in_cart += q }
+
+= link_to "#{items_in_cart} Items in Cart ( #{number_to_currency(subtotal_order_price)} )", cart_path, class: 'btn btn-link'
+
+/# = link_to "#{items_in_cart} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path, class: 'btn btn-link'

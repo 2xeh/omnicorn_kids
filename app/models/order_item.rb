@@ -5,35 +5,37 @@ class OrderItem < ApplicationRecord
   # RichOnRails
   validates :qty, presence: true, numericality:
             { only_integer: true, greater_than: 0 }
-  #
+
+  def name
+    product.name
+  end
+
+  # AA note: below is all stuff from RichOnRails.
+  # I don't think it has a purpose anymore
+
   # # some callback validations
   # validate :product_present # RichOnRails
   # validate :order_present # RichOnRails
   # before_save :finalize # RichOnRails
 
   # { message: "%{value} seems wrong" }
-
-
   # getter method for active admin support
-  def name
-    product.name
-  end
 
   # Price of persisted order item or product price
-  def price
-    if persisted?
-      self[:price]
-    else
-      product.price
-    end
-  end
+  # def price
+  #   if persisted?
+  #     self[:price]
+  #   else
+  #     product.price
+  #   end
+  # end
 
-  # to calculate the total_price
-  def total_price
-    price * qty
-  end
+  # # to calculate the total_price
+  # def total_price
+  #   price * qty
+  # end
 
-  private
+  # private
 
   # # RichOnRails
   # def product_present

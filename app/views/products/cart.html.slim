@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-md-3
+      = render partial: 'category', collection: all_categories
+    .col-md-9
+      = render partial: 'cart_rows'
+    .subtotal
+      h4.text-right
+        strong Total Price: 
+        = number_to_currency(subtotal_order_price)
+        
+      /# Checkout Screen
+      .text-right
+        = button_to 'Proceed to Checkout', checkout_path, class: "btn btn-secondary", method: :get
+                

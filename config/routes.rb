@@ -13,6 +13,20 @@ Rails.application.routes.draw do
       to: 'products#category',
       as: 'category'
 
+  # AA note: this was the old route per RichOnRails
+  # resource :cart, only: [:show]
+  get '/products/cart',
+      to: 'products#cart',
+      as: 'cart'
+
+  get '/products/checkout',
+      to: 'products#checkout',
+      as: 'checkout'
+
+  post '/products/place_order',
+       to: 'products#place_order',
+       as: 'order_confirmation'
+
   get '/products/search_product/',
       to: 'products#search_product'
 
@@ -20,6 +34,8 @@ Rails.application.routes.draw do
   get '/products/item/:id',
       to: 'products#item',
       as: 'product'
+
+
 
   # get '/products/search_keyword/', to: 'products#search_keyword'
   # per richonrails.com
@@ -31,9 +47,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-  resource :cart, only: [:show]
   # note: whenever you use %i, [] should become ()
   resources :order_items, only: %i(create update destroy)
 

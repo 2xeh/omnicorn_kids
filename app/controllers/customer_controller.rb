@@ -12,9 +12,7 @@ class CustomerController < ApplicationController
     @customer = Customer.find(param[:id])
   end
 
-  def edit
-  end
+  def edit; end
 
-  def deactivate
-  end
+  def deactivate; end
 end

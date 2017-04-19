@@ -1,0 +1,39 @@
+.shopping-cart
+  - items_in_cart = 0
+  - session[:product_quantities].each { |q| items_in_cart += q }
+
+  - if (items_in_cart == 0)
+    p.text-center
+      | There are no items in your shopping cart.  Please #{link_to "go back", root_path} and add some items to your cart.
+  - else
+    /# ok, let's render what is in the cart using the session variables
+    - products_to_order.each do |product|
+      .well
+        .row
+          .col-xs-8
+            h4= product.name
+          .col-xs-4
+            /# need to get the qty for this product
+            - product_index = session[:to_order_list].index(product.id)
+            - qty_to_order = session[:product_quantities][product_index]
+          
+            /# Show the product price
+            h4.text-right
+              | Unit Price:
+              span style=("color: green") = number_to_currency product.price
+            
+            /# Update quantity form  
+            form.form-inline.my-2.my-lg-0 action="#{update_product_on_order_product_path(product)}" method='post'
+              / controls
+              input.form-control type='number' value="#{qty_to_order}" name='qty'
+              button.btn.btn-primary type='submit' Update Quantity
+            
+            /# Delete Quantity form  
+            form.form-inline.my-2.my-lg-0 action="#{remove_product_from_order_product_path(product)}" method='post'
+              button.btn.btn-primary type='submit' Delete
+            
+            /# Show the total price (product price * qty)
+            h4.text-right
+              | Total Price:
+              - total_price = product.price * qty_to_order
+              span style=("color: green") = number_to_currency total_price

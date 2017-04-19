@@ -31,8 +31,8 @@ html
       .row
         .col-xs-6
           h1 = link_to 'Omnicorn Kids', root_path
-        / .col-xs-6.text-right
-        /   h1.cart-text = render 'layouts/cart_text'
+        .col-xs-6.text-right
+          h1.cart-text = render 'products/cart_text'
       hr
       
       - if flash[:notice]
@@ -41,11 +41,5 @@ html
           button.close aria-label='Close' data-dismiss='alert' type='button' 
             span aria-hidden='false' &times;
           = flash[:notice]
-      - else
-        - puts 'ANDREA: there is no flash notice'
 
-        
-      /# New addition AA trying to get search working
-      / = render '../products/_product_search'
-      /# end of copy from richonrails
     = yield
