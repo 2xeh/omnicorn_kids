@@ -3,10 +3,10 @@ html
   head
     title OmnicornKids
     = csrf_meta_tags
-    meta charset="utf-8" /
-    meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
+    meta charset='utf-8' /
+    meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport' /
     /# Bootstrap CSS
-    /# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"
+    /# <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ' crossorigin='anonymous'
     /# ^ from the starter template, not sure if this is useful. see March 27 notes
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     /# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -30,11 +30,21 @@ html
     .container
       .row
         .col-xs-6
-          h1 = link_to "Omnicorn Kids", root_path
-        .col-xs-6.text-right
-          h1.cart-text = render 'layouts/cart_text'
+          h1 = link_to 'Omnicorn Kids', root_path
+        / .col-xs-6.text-right
+        /   h1.cart-text = render 'layouts/cart_text'
       hr
       
+      - if flash[:notice]
+        - puts 'ANDREA: flash notice triggered'
+        .alert.alert-success.alert-dismissible.show role='alert' 
+          button.close aria-label='Close' data-dismiss='alert' type='button' 
+            span aria-hidden='false' &times;
+          = flash[:notice]
+      - else
+        - puts 'ANDREA: there is no flash notice'
+
+        
       /# New addition AA trying to get search working
       / = render '../products/_product_search'
       /# end of copy from richonrails

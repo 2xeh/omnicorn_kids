@@ -55,10 +55,19 @@ class OrderItemsController < ApplicationController
 
     if session[:to_order_list].include?(id)
       puts 'ANDREA: product is in session. get the order_item'
+      param_qty = order_item_params[:qty].to_i
+      puts "ANDREA: #{param_qty}"
+      puts "ANDREA: looking at order items #{@order.order_items.inspect}"
       # @order.order_items.where(product_id: id)
       # AA the product is in session, I want to add the qty
-      oi = @order.order_items.where(product_id: id)
-      oi.qty += order_item_params[:qty].to_i
+      oi = OrderItem.where("order_id = #{@order} AND product_id = #{id} ").first
+      puts "ANDREA: #{oi.inspect}"
+      # puts "ANDREA: #{oi.values}"
+
+      puts "ANDREA: about to manipulate qty"
+      new_qty = oi.qty.to_i + order_item_params[:qty].to_i
+      oi.qty = new_qty
+
       oi.save
 
     else

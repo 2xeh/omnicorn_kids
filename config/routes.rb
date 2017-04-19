@@ -23,7 +23,16 @@ Rails.application.routes.draw do
 
   # get '/products/search_keyword/', to: 'products#search_keyword'
   # per richonrails.com
-  resources :products, only: [:index]
+  resources :products, only: [:index] do
+    member do
+      post :add_product_to_order
+      post :update_product_on_order
+      post :remove_product_from_order
+    end
+  end
+
+
+
   resource :cart, only: [:show]
   # note: whenever you use %i, [] should become ()
   resources :order_items, only: %i(create update destroy)
