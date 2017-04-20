@@ -1,2 +1,18 @@
-h1 Charges#new
-p Find me in app/views/charges/new.html.slim
+.container
+  form.form-inline.my-2.my-lg-0 action=charges_path method='post'
+    p = "Name on Card: #{@name_on_card}"
+    p = "Address: #{@street_address}, #{@city}, #{@province.code}   #{@postal_code}"
+    p = "SubTotal: #{number_to_currency (@subtotal_cents/100)}"
+    
+    - if @gst_cents > 0
+      p = "gst: #{number_to_currency (@gst_cents/100)}"
+    
+    - if @pst_cents > 0
+      p = "pst: #{number_to_currency (@pst_cents/100)}"
+      
+    - if @hst_cents > 0
+      p = "hst: #{number_to_currency (@hst_cents/100)}"
+    
+    p = "Total: #{number_to_currency (@total_cents/100)}"
+    
+    script.stripe-button data-amount="#{@total_cents}" data-description="#{@description}" data-key="#{Rails.configuration.stripe[:publishable_key]}" data-locale='auto' src="https://checkout.stripe.com/checkout.js" 

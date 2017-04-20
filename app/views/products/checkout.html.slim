@@ -16,15 +16,36 @@
         /   = password_field_tag :password
         
   
-      form.form-inline.my-2.my-lg-0 action=order_confirmation_path method='post'
+      form.form-inline.my-2.my-lg-0 action=new_charge_path method='get'
         
         /# collect shipping info
         .well
           h4 Shipping Info
-          p Get shipping details
-          p make it possible for customers to order without requiring an account
-          /input.form-control type='text' value="#{qty_to_order}" name='qty'
-      
+          .row
+            .col-md-12
+              p Name on Card: 
+              input.form-control.col-md-12 type='text' name='name_on_card'
+            .col-md-12
+              p Email address: 
+              input.form-control.col-md-12 type='text' name='email'
+            .col-md-12
+              p Street Address: 
+              input.form-control.col-md-12 type='text' name='street_address'
+          .row
+            .col-md-4
+              p City: 
+              input.form-control.col-md-12 type='text' name='city'
+              
+            .col-md-4
+              /# drop down for province
+              select.form-control name="province_selected"
+                - @provinces.each do |p|
+                  option.form-control value="#{p.id}" #{p.name}
+
+            .col-md-4
+              p Postal Code: 
+              input.form-control.col-md-12 type='text' name='postal_code'
+          
         .well
           /# = render partial: 'cart_rows'
           - products_to_order.each do |product|
@@ -43,8 +64,10 @@
           .row
             .col-xs-12
               h4 = "SubTotal: #{number_to_currency subtotal_order_price}"
-              h4 Get taxes and display them
-              h4 Calculate the total price
+              input.hidden name='subtotal' value=subtotal_order_price
+              - puts "ANDREA: #{subtotal_order_price}"
+              /# h4 Get taxes and display them
+              /# h4 Calculate the total price
                 
                 /# need to handle taxes based on province
                 

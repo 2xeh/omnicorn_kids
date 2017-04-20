@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'charges/new'
-  get 'charges/create'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -23,9 +20,9 @@ Rails.application.routes.draw do
       to: 'products#checkout',
       as: 'checkout'
 
-  post '/products/place_order',
-       to: 'products#place_order',
-       as: 'order_confirmation'
+  post '/products/place_order',    # Path
+       to: 'products#place_order', # controller#action
+       as: 'place_order'
 
   get '/products/search_product/',
       to: 'products#search_product'
@@ -35,7 +32,7 @@ Rails.application.routes.draw do
       to: 'products#item',
       as: 'product'
 
-
+  resources :charges, only: %i(new create)
 
   # get '/products/search_keyword/', to: 'products#search_keyword'
   # per richonrails.com

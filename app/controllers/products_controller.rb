@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :initialize_session
-  helper_method :products_to_order
-  helper_method :subtotal_order_price
+  # before_action :initialize_session
+  # helper_method :products_to_order
+  # helper_method :subtotal_order_price
 
   def cart; end
 
@@ -12,7 +12,9 @@ class ProductsController < ApplicationController
     # @order_item = current_order.order_items.new
   end
 
-  def checkout; end
+  def checkout
+    @provinces = Province.all
+  end
 
   def index
     @products = Product.all
@@ -24,13 +26,26 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def place_order
-    
 
+  def charges
+    # WE NEED TO PERSIST THE ORDER HERE!!!!
 
     # need to receive the params from checkout
     # create an order and all the order items
     # record customer info
+
+    amount = 500 # $5 in cents
+
+    @customer = Stripe::Customer.create(email:  params[:stripeEmail],
+                                       source: params[:stripeToken])
+
+    @charge = Stripe::Charge.create(customer:    @customer.id,
+                                    amount:      amount,
+                                    description: 'Rails Stripe customer',
+                                    currency:    'cad')
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_charge_path
   end
 
   # query to search by product
@@ -101,24 +116,24 @@ class ProductsController < ApplicationController
     # puts "ANDREA: product_quantities session #{session[:product_quantities]}"
   end
 
-  def initialize_session
-    session[:to_order_list] ||= []
-    session[:product_quantities] ||= []
-  end
-
-  def products_to_order
-    Product.find(session[:to_order_list])
-  end
-
-  def subtotal_order_price
-    subtotal_order = 0
-
-    products_to_order.each do |product|
-      product_index = session[:to_order_list].index(product.id)
-      qty_to_order = session[:product_quantities][product_index]
-      subtotal_order += (product.price * qty_to_order)
-    end
-
-    subtotal_order
-  end
+  # def initialize_session
+  #   session[:to_order_list] ||= []
+  #   session[:product_quantities] ||= []
+  # end
+  #
+  # def products_to_order
+  #   Product.find(session[:to_order_list])
+  # end
+  #
+  # def subtotal_order_price
+  #   subtotal_order = 0
+  #
+  #   products_to_order.each do |product|
+  #     product_index = session[:to_order_list].index(product.id)
+  #     qty_to_order = session[:product_quantities][product_index]
+  #     subtotal_order += (product.price * qty_to_order)
+  #   end
+  #
+  #   subtotal_order
+  # end
 end

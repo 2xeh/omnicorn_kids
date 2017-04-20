@@ -1,3 +1,18 @@
 .container
-  p Order Payment
-  
+  = form_tag charges_path do
+    p = "Name on Card: #{@name_on_card}"
+    p = "Address: #{@street_address}, #{@city}, #{@province.code}   #{@postal_code}"
+    p = "SubTotal: #{@subtotal}"
+    
+    - if @gst > 0
+      p = "gst: #{number_to_currency @gst}"
+    
+    - if @pst > 0
+      p = "pst: #{number_to_currency @pst}"
+      
+    - if @hst > 0
+      p = "hst: #{number_to_currency @hst}"
+    
+    p = "Total: #{number_to_currency (@total_cents/100)}"
+    
+    script.stripe-button data-amount="#{@total_cents}" data-description="#{@description}" data-key="#{Rails.configuration.stripe[:publishable_key]}" data-locale="auto" src="https://checkout.stripe.com/checkout.js" 
