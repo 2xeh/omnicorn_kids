@@ -26,7 +26,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-
   def charges
     # WE NEED TO PERSIST THE ORDER HERE!!!!
 
@@ -37,7 +36,7 @@ class ProductsController < ApplicationController
     amount = 500 # $5 in cents
 
     @customer = Stripe::Customer.create(email:  params[:stripeEmail],
-                                       source: params[:stripeToken])
+                                        source: params[:stripeToken])
 
     @charge = Stripe::Charge.create(customer:    @customer.id,
                                     amount:      amount,
@@ -57,13 +56,6 @@ class ProductsController < ApplicationController
 
     @products = @products.where(category_id: category_selected.to_i) unless category_selected == 'ALL'
   end
-
-  # AA note: I'm pretty sure I don't need this
-  # # query to search by category
-  # def search_category
-  #   # @order_item = current_order.order_items.new
-  #   @products = Product.where("lower(description) LIKE lower('%#{params[:product_keyword]}%') OR lower(name) LIKE lower('%#{params[:product_keyword]}%') ").order(:description)
-  # end
 
   # using parallel sessions, track product_id and corresponding qtys
   def add_product_to_order

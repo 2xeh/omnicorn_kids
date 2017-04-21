@@ -9,7 +9,6 @@ class ChargesController < ApplicationController
     @province = Province.find(params[:province_selected])
     @description = "Omnicorn Kids purchase for #{@name_on_card}, #{@email}"
 
-    puts "ANDREA: subtotal param #{params[:subtotal]}"
     # ok, let's be careful with rounding here in the calculation
     subtotal = params[:subtotal]
     @subtotal_cents = (subtotal.to_f * 100).to_i.to_f
